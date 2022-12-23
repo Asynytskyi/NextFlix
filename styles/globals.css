@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   padding: 0;
@@ -5,7 +9,9 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
-
+:root {
+  --text-color: hsl(0, 0%, 100%);
+}
 a {
   color: inherit;
   text-decoration: none;
@@ -14,13 +20,61 @@ a {
 * {
   box-sizing: border-box;
 }
-
+*:focus {
+  outline: none;
+}
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
   body {
+    --bg: #212426;
     color: white;
-    background: black;
+    background: var(--bg);
   }
+}
+.wrapper {
+  display: grid;
+  place-content: center;
+  background-color: var(--background-color);
+  font-family: "Oswald", sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-color);
+}
+
+.wrapper > div {
+  grid-area: 1/1/-1/-1;
+}
+.top {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 48%, 0% 58%);
+}
+.bottom {
+  clip-path: polygon(0% 60%, 100% 50%, 100% 100%, 0% 100%);
+  color: transparent;
+  background: -webkit-linear-gradient(177deg, black 53%, var(--text-color) 65%);
+  background: linear-gradient(178.8deg, black 53%, var(--text-color) 62%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  transform: translateX(-0.03em);
+}
+
+.onyx {
+  background: #343739;
+}
+.beis {
+  color: #f9d3b4;
+}
+.bg-search {
+  background-color: #1f2123;
+}
+.search {
+  color: #a1a1a1;
+}
+.search::placeholder {
+  color: #a1a1a1;
+}
+.search-svg {
+  stroke: #d98769;
 }
