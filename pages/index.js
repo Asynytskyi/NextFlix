@@ -1,4 +1,4 @@
-import { useState, useEffect, use } from "react";
+import { useState } from "react";
 
 import Card from "../components/Card";
 import Header from "../components/Header";
@@ -8,7 +8,9 @@ export default function Home() {
 
   return (
     <div className="mx-auto flex flex-col items-center gap-y-20 pb-40">
-      <Header requireMovies={setAllMovies} />
+      <div>
+        <Header requireMovies={setAllMovies} />
+      </div>
       <div className="pt-44">
         {allMovies?.length > 0 ? (
           <main className="container flex flex-wrap justify-center gap-x-12 gap-y-14">

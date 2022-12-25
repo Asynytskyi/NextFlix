@@ -12,7 +12,7 @@ const Header = ({ requireMovies }) => {
 
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const [defaultScrollY, setDefaultScrollY] = useState(80);
+  const [defaultScrollY, setDefaultScrollY] = useState(200);
 
   const API_URL = "https://www.omdbapi.com/?i=tt3896198&apikey=a8fac808";
 
@@ -36,7 +36,7 @@ const Header = ({ requireMovies }) => {
   }, [movies]);
 
   const controlHeader = () => {
-    active ? setDefaultScrollY(9999) : setDefaultScrollY(80);
+    active ? setDefaultScrollY(9999) : setDefaultScrollY(200);
 
     if (typeof window !== "undefined") {
       window.scrollY > lastScrollY && window.scrollY > defaultScrollY
@@ -62,29 +62,39 @@ const Header = ({ requireMovies }) => {
   }, [lastScrollY]);
 
   return (
-    <header
-      className={`${
-        show
-          ? "border-b-2 border-[var(--bg)] backdrop-blur-xl fixed top-0 right-0 left-0 z-20 w-full h-20 flex flex-row items-center justify-between px-10"
-          : "hidden"
-      }`}
-    >
-      <Logo />
-      <div className="w-2/3 opacity-60">
-        <SearchBar
-          movies={movies}
-          onChange={(name) => {
-            searchMovies(name);
-          }}
-        />
-      </div>
-      <button
-        className="flex items-center justify-center w-6.4375"
-        onClick={() => setActive(!active)}
+    <header>
+      <div
+        className={`border-b-2 border-[var(--bg)] backdrop-blur-xl fixed top-0 right-0 left-0 z-20 w-full h-20 flex flex-row items-center justify-between px-10 transition-opacity ${
+          show
+            ? "opacity-100 duration-500"
+            : "opacity-0 duration-300 blur-xl z-0"
+        }`}
       >
-        {active ? <Close /> : <Hamburger />}
-      </button>
-      <nav>{active ? <MenuComponents /> : <></>}</nav>
+        <div>{show ? <Logo /> : <></>}</div>
+        <div className={`w-2/3 opacity-60 ${show ? "" : "hidden"}`}>
+          <SearchBar
+            movies={movies}
+            onChange={(name) => {
+              searchMovies(name);
+            }}
+          />
+        </div>
+        <button
+          className="flex items-center justify-center w-6.4375"
+          onClick={() => setActive(!active)}
+        >
+          {show ? (
+            active ? (
+              <Close />
+            ) : (
+              <Hamburger className="hamIcon" />
+            )
+          ) : (
+            <></>
+          )}
+        </button>
+        <nav>{active ? <MenuComponents /> : <></>}</nav>
+      </div>
     </header>
   );
 };

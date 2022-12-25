@@ -9,9 +9,9 @@ export default function Hamburger(props) {
       height="30"
       fill="#fff"
     >
-      <rect width="90" height="10" rx="6"></rect>
-      <rect y="25" width="90" height="10" rx="6"></rect>
-      <rect y="50" width="90" height="10" rx="6"></rect>
+      <rect id="rect1" x="50" width="40" height="10" rx="6"></rect>
+      <rect id="rect2" x="10" y="25" width="75" height="10" rx="6"></rect>
+      <rect y="50" width="40" height="10" rx="6"></rect>
     </svg>
   );
 }

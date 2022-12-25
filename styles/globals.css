@@ -78,3 +78,25 @@ a {
 .search-svg {
   stroke: #d98769;
 }
+.menu-components {
+  color: #ff99ff99;
+  background: #242628;
+  opacity: 0.95;
+}
+
+svg rect {
+  transition-duration: 500ms;
+}
+svg:hover rect {
+  fill: #ffc0cb;
+  width: 100%;
+  transition-duration: 500ms;
+}
+svg:hover #rect1 {
+  transform: translate(-55%);
+  transition-duration: 500ms;
+}
+svg:hover #rect2 {
+  transform: translate(-10%);
+  transition-duration: 500ms;
+}
