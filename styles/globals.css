@@ -84,32 +84,36 @@ a {
   opacity: 0.95;
 }
 
-svg rect {
+button svg rect {
   transition-duration: 500ms;
 }
 button:hover svg rect {
   fill: #ffc0cb;
+}
+.btnDis:hover #rect1 {
   width: 100%;
-  transition-duration: 500ms;
-}
-button:hover svg #rect1 {
   transform: translate(-55%);
-  transition-duration: 500ms;
 }
-button:hover svg #rect2 {
+.btnDis:hover #rect2 {
+  width: 100%;
   transform: translate(-10%);
-  transition-duration: 500ms;
+}
+.btnDis:hover #rect3 {
+  width: 100%;
 }
 
-button:active svg #rect1 {
-  width: 70%;
-  transform: translate(-5%, 105%) rotate(-45deg);
+.btnActive #rect1 {
+  width: 60%;
+  transform: translate(3%, 95%) rotate(-45deg);
+  transition-duration: 500ms;
 }
-button:active svg #rect2 {
+.btnActive #rect2 {
   width: 123%;
   transform: translate(17%, -70%) rotate(45deg);
+  transition-duration: 500ms;
 }
-button:active svg #rect3 {
-  width: 70%;
+.btnActive #rect3 {
+  width: 60%;
   transform: translate(-41%, 43%) rotate(-45deg);
+  transition-duration: 500ms;
 }

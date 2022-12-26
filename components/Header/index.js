@@ -78,10 +78,14 @@ const Header = ({ requireMovies }) => {
           />
         </div>
         <button
-          className="flex items-center justify-center w-6.4375"
+          className="flex items-center justify-center "
           onClick={() => setActive(!active)}
         >
-          {show ? <Hamburger /> : <></>}
+          {show ? (
+            <Hamburger className={`${active ? "btnActive" : "btnDis"}`} />
+          ) : (
+            <></>
+          )}
         </button>
         <nav>{active ? <MenuComponents /> : <></>}</nav>
       </div>
