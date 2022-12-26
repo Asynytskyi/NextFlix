@@ -87,16 +87,29 @@ a {
 svg rect {
   transition-duration: 500ms;
 }
-svg:hover rect {
+button:hover svg rect {
   fill: #ffc0cb;
   width: 100%;
   transition-duration: 500ms;
 }
-svg:hover #rect1 {
+button:hover svg #rect1 {
   transform: translate(-55%);
   transition-duration: 500ms;
 }
-svg:hover #rect2 {
+button:hover svg #rect2 {
   transform: translate(-10%);
   transition-duration: 500ms;
+}
+
+button:active svg #rect1 {
+  width: 70%;
+  transform: translate(-5%, 105%) rotate(-45deg);
+}
+button:active svg #rect2 {
+  width: 123%;
+  transform: translate(17%, -70%) rotate(45deg);
+}
+button:active svg #rect3 {
+  width: 70%;
+  transform: translate(-41%, 43%) rotate(-45deg);
 }

@@ -65,9 +65,7 @@ const Header = ({ requireMovies }) => {
     <header>
       <div
         className={`border-b-2 border-[var(--bg)] backdrop-blur-xl fixed top-0 right-0 left-0 z-20 w-full h-20 flex flex-row items-center justify-between px-10 transition-opacity ${
-          show
-            ? "opacity-100 duration-500"
-            : "opacity-0 duration-300 blur-xl z-0"
+          show ? "opacity-100 duration-500" : "opacity-0 z-0"
         }`}
       >
         <div>{show ? <Logo /> : <></>}</div>
@@ -83,15 +81,7 @@ const Header = ({ requireMovies }) => {
           className="flex items-center justify-center w-6.4375"
           onClick={() => setActive(!active)}
         >
-          {show ? (
-            active ? (
-              <Close />
-            ) : (
-              <Hamburger className="hamIcon" />
-            )
-          ) : (
-            <></>
-          )}
+          {show ? <Hamburger /> : <></>}
         </button>
         <nav>{active ? <MenuComponents /> : <></>}</nav>
       </div>
