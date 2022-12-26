@@ -1,5 +1,3 @@
-import cls from "classnames";
-
 export default function MenuComponents() {
   const data = [
     { name: "Home", link: "/" },
@@ -10,13 +8,13 @@ export default function MenuComponents() {
   console.log("ff");
 
   return (
-    <div className="align-center border-l-2 border-[var(--bg)] menu-components absolute text-center right-full top-20 z-30 w-full min-h-screen translate-x-full">
-      <ul className="w-full pt-0.125">
+    <div className="menu-bg-image menu-components align-center border-l-2 border-[var(--bg)] absolute right-52 top-20 z-30 w-full min-h-screen translate-x-full duration-1000 menu-transition">
+      <ul className="px-6 pt-0.125">
         {data.map((item, i) => (
-          <li key={i}>
+          <li className="" key={i}>
             <a
               href={item.link}
-              className="text-xl font-bold line-clamp-2 hover:scale-110 hover:bg-slate-400 py-10"
+              className="text-xl font-bold line-clamp-2 hover:scale-110 hover:bg-slate-100 hover:mx-2.588 hover:px-8 py-5"
             >
               {item.name}
             </a>

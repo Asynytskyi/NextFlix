@@ -1,19 +1,11 @@
-import { useState } from "react";
-
-import Hamburger from "../IconHamburger";
-import Close from "../IconClose";
+import Menu from "../IconMenu";
 import MenuComponents from "../MenuComponents";
 
-export default function MenuHamburger() {
-  const [active, setActive] = useState(false);
-
+export default function MenuMenu() {
   return (
     <div>
-      <button
-        className="flex items-center justify-center w-6.4375"
-        onClick={() => setActive(!active)}
-      >
-        {active === true ? <Close /> : <Hamburger />}
+      <button className="flex items-center justify-center w-6.4375">
+        <Menu />
       </button>
       <div>{active === true ? <MenuComponents /> : <></>}</div>
     </div>

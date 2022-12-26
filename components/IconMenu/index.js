@@ -1,5 +1,5 @@
 import cls from "classnames";
-export default function Hamburger(props) {
+export default function Menu(props) {
   const { className } = props;
   return (
     <svg

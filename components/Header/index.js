@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 
 import Logo from "../Logo";
-import Hamburger from "../IconHamburger";
-import Close from "../IconClose";
+import Menu from "../IconMenu";
 import MenuComponents from "../MenuComponents";
 import SearchBar from "../SearchBar";
 
@@ -82,7 +81,7 @@ const Header = ({ requireMovies }) => {
           onClick={() => setActive(!active)}
         >
           {show ? (
-            <Hamburger className={`${active ? "btnActive" : "btnDis"}`} />
+            <Menu className={`${active ? "btnActive" : "btnDis"}`} />
           ) : (
             <></>
           )}
