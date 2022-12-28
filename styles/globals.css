@@ -78,18 +78,6 @@ a {
 .search-svg {
   stroke: #d98769;
 }
-.menu-components {
-  color: #a1a1a1;
-  opacity: 0.97;
-}
-.menu-bg-image {
-  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat.svg"),
-    linear-gradient(#222426, #1f2123);
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-position: 3600%;
-}
 button svg rect {
   transition-duration: 500ms;
 }
@@ -123,19 +111,14 @@ button:hover svg rect {
   transform: translate(-41%, 43%) rotate(-45deg);
   transition-duration: 500ms;
 }
-.menu-transition {
-  transition-duration: 500ms;
-  top: 20;
-  -webkit-transition: 0.2s;
-  -moz-transition: 0.2s;
-  -o-transition: 0.2s;
-  transition: 0.2s;
-  transition: all 0.25s ease;
-  transition: border-radius linear 0.8s,
-    width cubic-bezier(0.77, 0, 0.175, 1) 0.6s,
-    height cubic-bezier(0.77, 0, 0.175, 1) 0.6s;
-  transition-property: border-radius, width, height;
-  transition-duration: 0.8s, 0.6s, 0.6s;
-  transition-timing-function: linear, cubic-bezier(0.77, 0, 0.175, 1),
-    cubic-bezier(0.77, 0, 0.175, 1);
+.menu-components {
+  color: #a1a1a1;
+  opacity: 0.99;
+}
+.menu-bg-image {
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat.svg"),
+    linear-gradient(#222426, #1f2123);
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: 500% 1100px;
 }

@@ -64,7 +64,7 @@ const Header = ({ requireMovies }) => {
     <header>
       <div
         className={`border-b-2 border-[var(--bg)] backdrop-blur-xl fixed top-0 right-0 left-0 z-20 w-full h-20 flex flex-row items-center justify-between px-10 transition-opacity ${
-          show ? "opacity-100 duration-500" : "opacity-0 z-0"
+          show ? "opacity-100 duration-500" : "opacity-0 -z-10"
         }`}
       >
         <div>{show ? <Logo /> : <></>}</div>
@@ -86,7 +86,16 @@ const Header = ({ requireMovies }) => {
             <></>
           )}
         </button>
-        <nav>{active ? <MenuComponents /> : <></>}</nav>
+        <nav>
+          <MenuComponents
+            className={`
+            menu-bg-image menu-components align-center border-l-2 border-[var(--bg)] fixed right-0 top-20 duration-1000 ${
+              active
+                ? "h-screen w-56 rounded-none menu-transition "
+                : "w-0 h-0 rounded-bl-full"
+            }`}
+          />
+        </nav>
       </div>
     </header>
   );

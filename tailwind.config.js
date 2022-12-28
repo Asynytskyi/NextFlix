@@ -17,7 +17,7 @@ module.exports = {
         0.125: rem(2),
       },
       margin: {
-        2.588: rem(41.4),
+        0.95: rem(15.2),
       },
     },
   },
