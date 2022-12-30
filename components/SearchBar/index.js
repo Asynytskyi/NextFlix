@@ -14,10 +14,10 @@ export default function SearchBar(props) {
     onChange(value);
   };
   return (
-    <div className="flex items-center bg-search rounded-full h-10 w-auto">
+    <div className="flex items-center bg-obsidian rounded-full h-10 w-auto">
       <input
         ref={ref}
-        className="px-4 bg-transparent rounded-full w-full h-auto font-base text-base font-sans tracking-wider search"
+        className="px-4 bg-transparent rounded-full w-full h-auto font-base text-base font-sans tracking-wider text-white placeholder:text-beton"
         placeholder="Search for movies"
         onChange={(e) => onChangeInput(e.target.value)}
       />

@@ -11,6 +11,7 @@ module.exports = {
       boxShadow: { dim: "5px 5px 7px #1c1d1f, -5px -5px 7px #222527" },
       width: {
         6.4375: rem(103),
+        0.313: rem(5),
       },
       padding: {
         4.094: rem(65.5),
@@ -18,6 +19,16 @@ module.exports = {
       },
       margin: {
         0.95: rem(15.2),
+      },
+      spacing: {
+        0.453: rem(7.25),
+      },
+      colors: {
+        onyx: "#343739",
+        beis: "#f9d3b4",
+        beton: "#a1a1a1",
+        obsidian: "#1f2123",
+        lPurple: "#8167a9",
       },
     },
   },

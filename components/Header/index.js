@@ -87,14 +87,7 @@ const Header = ({ requireMovies }) => {
           )}
         </button>
         <nav>
-          <MenuComponents
-            className={`
-            menu-bg-image menu-components align-center border-l-2 border-[var(--bg)] fixed right-0 top-20 duration-1000 ${
-              active
-                ? "h-screen w-56 rounded-none menu-transition "
-                : "w-0 h-0 rounded-bl-full"
-            }`}
-          />
+          <MenuComponents activeState={active} />
         </nav>
       </div>
     </header>
