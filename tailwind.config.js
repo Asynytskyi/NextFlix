@@ -8,7 +8,10 @@ module.exports = {
   ],
   theme: {
     extend: {
-      boxShadow: { dim: "5px 5px 7px #1c1d1f, -5px -5px 7px #222527" },
+      boxShadow: {
+        dim: "5px 5px 7px #1c1d1f, -5px -5px 7px #222527",
+        slugActive: "5px 0 5px -1.8px #8167a9;",
+      },
       width: {
         6.4375: rem(103),
         0.313: rem(5),
@@ -21,7 +24,7 @@ module.exports = {
         0.95: rem(15.2),
       },
       spacing: {
-        0.453: rem(7.25),
+        0.688: rem(11),
       },
       colors: {
         onyx: "#343739",

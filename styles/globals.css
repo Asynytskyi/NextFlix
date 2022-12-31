@@ -116,11 +116,11 @@ button:hover svg rect {
   transition-delay: 0.8s;
 }
 .delay-2 {
-  transition-delay: 0.9s;
-}
-.delay-3 {
   transition-delay: 1s;
 }
+.delay-3 {
+  transition-delay: 1.2s;
+}
 .delay-4 {
-  transition-delay: 1.1s;
+  transition-delay: 1.4s;
 }
