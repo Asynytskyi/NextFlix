@@ -2,13 +2,10 @@ import { useState } from "react";
 import IconFullFavorite from "../IconFullFavorite";
 import IconEmptyFavorite from "../IconEmptyFavorite";
 
-export default function FavButton() {
+export default function FavButton({ movie, addFavorite }) {
   const [active, setActive] = useState(false);
-  const [favorite, setFavorite] = useState([]);
-  console.log(favorite.length);
-  const addFavorite = () => {
-    setFavorite((arr) => [...arr, `${arr.length}`]);
-  };
+  //const [favorite, setFavorite] = useState([]);
+
   const setAct = () => {
     setActive(!active);
   };
@@ -16,7 +13,7 @@ export default function FavButton() {
   return (
     <button
       onClick={() => {
-        addFavorite();
+        addFavorite(movie);
         setAct();
       }}
     >

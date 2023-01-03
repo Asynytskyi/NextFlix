@@ -11,13 +11,7 @@ export default function MenuComponents({ activeState }) {
 
       delay: "delay-2",
     },
-    {
-      id: "favList",
-      name: "Favorite List",
-
-      delay: "delay-3",
-    },
-    { id: "etc", name: "etc.", delay: "delay-4" },
+    { id: "etc", name: "etc.", delay: "delay-3" },
   ];
 
   return (

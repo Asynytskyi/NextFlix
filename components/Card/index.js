@@ -6,6 +6,13 @@ import FavButton from "../FavoriteButton";
 export default function Card(props) {
   const { imgURL, title, year, type, movieId, movieGenre } = props;
 
+  const [favorite, setFavorite] = useState([]);
+  const addFavorite = (movies) => {
+    setFavorite((favorite) => [...favorite, movies]);
+  };
+
+  console.log(favorite);
+
   const [isHover, setIsHover] = useState(false);
   const [id, setId] = useState(null);
 
@@ -101,7 +108,13 @@ export default function Card(props) {
           "absolute top-4 right-4": isHover,
         })}
       >
-        <FavButton />
+        {/* {movie.map((movies) => ( */}
+        <FavButton
+          key={movie.movieId}
+          movies={movie}
+          addFavorite={() => addFavorite(movie)}
+        />
+        {/* ))}; */}
       </div>
     </figure>
   );
