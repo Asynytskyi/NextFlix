@@ -5,10 +5,10 @@ import Menu from "../IconMenu";
 import MenuComponents from "../MenuComponents";
 import SearchBar from "../SearchBar";
 
-const Header = ({ requireMovies }) => {
+const Header = ({ requireMovies, isActive }) => {
   const [movies, setMovies] = useState([]);
   const [active, setActive] = useState(false);
-
+  const filter = ["Batman", "Lego", ""];
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [defaultScrollY, setDefaultScrollY] = useState(200);
@@ -26,8 +26,15 @@ const Header = ({ requireMovies }) => {
   }
 
   // Default onfirstload search
+  /* useEffect(() => {
+    if (isActive) searchMovies(filter[1]);
+    else {
+      searchMovies(filter[0]);
+    }
+  }, []); */
+
   useEffect(() => {
-    searchMovies("Batman");
+    searchMovies(filter[0]);
   }, []);
 
   useEffect(() => {
@@ -87,7 +94,7 @@ const Header = ({ requireMovies }) => {
           )}
         </button>
         <nav>
-          <MenuComponents activeState={active} />
+          <MenuComponents activeState={active} isActive={isActive} />
         </nav>
       </div>
     </header>

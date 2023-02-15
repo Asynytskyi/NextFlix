@@ -1,6 +1,5 @@
 import { useState } from "react";
 import BestRated from "../components/BestRated";
-import Card from "../components/Card";
 import Header from "../components/Header";
 
 export default function Home() {
@@ -22,7 +21,7 @@ export default function Home() {
           <main className="container flex flex-wrap justify-center gap-x-12 gap-y-14">
             {allMovies.map((movie, index) => {
               return (
-                <Card
+                <BestRated
                   title={movie.Title}
                   year={movie.Year}
                   imgURL={movie.Poster}
