@@ -30,7 +30,7 @@ a {
   body {
     --bg: #212426;
     color: white;
-    background: var(--bg);
+    background-color: var(--bg);
   }
 }
 .wrapper {
