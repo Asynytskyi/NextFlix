@@ -28,8 +28,9 @@ a {
     color-scheme: dark;
   }
   body {
+    background-color: red !important;
     --bg: #212426;
-    color: white;
+    color: green;
     background-color: var(--bg);
   }
 }
