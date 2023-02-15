@@ -1,5 +1,4 @@
 import { useState } from "react";
-import BestRated from "../components/BestRated";
 import Card from "../components/Card";
 import Header from "../components/Header";
 

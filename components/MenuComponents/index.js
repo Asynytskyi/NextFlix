@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 export default function MenuComponents({ activeState, isActive }) {
   const [active, setActive] = useState("home");
   const { pathname } = useRouter();
+
   const data = [
     { id: "", href: "/", name: "Home", delay: "delay-1" },
     {
@@ -16,6 +17,7 @@ export default function MenuComponents({ activeState, isActive }) {
     },
     { id: "etc", href: "", name: "etc.", delay: "delay-3" },
   ];
+
   useEffect(() => {
     setActive(pathname.split("/")[1]);
   }, []);
