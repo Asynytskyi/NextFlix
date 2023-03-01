@@ -38,8 +38,6 @@ a {
   place-content: center;
   background-color: var(--background-color);
   font-family: "Oswald", sans-serif;
-  font-size: 28px;
-  font-weight: 700;
   text-transform: uppercase;
   color: var(--text-color);
 }
@@ -58,8 +56,17 @@ a {
   -webkit-background-clip: text;
   transform: translateX(-0.03em);
 }
-.search-svg {
-  stroke: #d98769;
+.logo-main {
+  font-size: 28px;
+  font-weight: 700;
+}
+.logo-loading {
+  font-size: 60px;
+  font-weight: 700;
+}
+.logo-sign-in {
+  font-size: 36px;
+  font-weight: 700;
 }
 button svg rect {
   transition-duration: 500ms;
@@ -98,6 +105,13 @@ button:hover svg rect {
   color: #a1a1a1;
   opacity: 1;
 }
+.login-left {
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat.svg"),
+    linear-gradient(#222426, #1f2123);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: 200% 970px;
+}
 .menu-bg-image-bef {
   background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat.svg"),
     linear-gradient(#222426, #1f2123);
@@ -120,4 +134,7 @@ button:hover svg rect {
 }
 .delay-3 {
   transition-delay: 1.2s;
+}
+input:focus {
+  outline: none;
 }

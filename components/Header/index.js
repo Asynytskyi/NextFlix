@@ -1,17 +1,22 @@
 import { useState, useEffect } from "react";
 
+import { useRouter } from "next/router";
 import Logo from "../Logo";
 import Menu from "../IconMenu";
 import MenuComponents from "../MenuComponents";
 import SearchBar from "../SearchBar";
+import IconComponent from "../Icon";
+import Link from "next/link";
 
-const Header = ({ requireMovies, isActive }) => {
+const Header = ({ requireMovies, isActive, filter_num }) => {
   const [movies, setMovies] = useState([]);
   const [active, setActive] = useState(false);
   const filter = ["Batman", "Lego", ""];
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [defaultScrollY, setDefaultScrollY] = useState(200);
+  const router = useRouter();
+  const [isHover, setIsHover] = useState(false);
 
   const API_URL = "https://www.omdbapi.com/?i=tt3896198&apikey=a8fac808";
 
@@ -34,7 +39,7 @@ const Header = ({ requireMovies, isActive }) => {
   }, []); */
 
   useEffect(() => {
-    searchMovies(filter[0]);
+    searchMovies(filter[filter_num]);
   }, []);
 
   useEffect(() => {
@@ -74,29 +79,46 @@ const Header = ({ requireMovies, isActive }) => {
           show ? "opacity-100 duration-500" : "opacity-0 -z-10"
         }`}
       >
-        <div>{show ? <Logo /> : <></>}</div>
+        <div>
+          {show ? (
+            <Link href={"/"}>
+              <Logo className="logo-main" />
+            </Link>
+          ) : (
+            <></>
+          )}
+        </div>
         <div className={`w-2/3 opacity-60 ${show ? "" : "hidden"}`}>
           <SearchBar
             movies={movies}
             onChange={(name) => {
-              searchMovies(name);
+              if (name !== "") {
+                searchMovies(name);
+              } else if (name === "") {
+                searchMovies(filter[filter_num]);
+              }
             }}
           />
         </div>
-        <button
-          className="flex items-center justify-center "
-          onClick={() => setActive(!active)}
-        >
+        <button onClick={() => setActive(!active)}>
           {show ? (
             <Menu className={`${active ? "btnActive" : "btnDis"}`} />
           ) : (
             <></>
           )}
         </button>
-        <nav>
+        <aside>
           <MenuComponents activeState={active} isActive={isActive} />
-        </nav>
+        </aside>
       </div>
+      <button
+        className="fixed right-10 top-6 z-40"
+        onClick={() => {
+          router.push("/sign-in");
+        }}
+      >
+        Sign In
+      </button>
     </header>
   );
 };

@@ -1,6 +1,7 @@
 import { useState, useEffect, use } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import IconComponent from "../Icon";
 
 export default function MenuComponents({ activeState, isActive }) {
   const [active, setActive] = useState("home");
@@ -47,7 +48,7 @@ export default function MenuComponents({ activeState, isActive }) {
                   setActive(item.id);
                 }}
                 href={item.link}
-                className={`delay-100 duration-500 relative w-full text-xl font-bold line-clamp-2 hover:scale-110 hover:text-white hover:px-8 px-6 mt-6 hover:before:left-0.688 hover:before:h-full hover:before:w-0.313 hover:before:text-transparent hover:before:bg-lPurple before:absolute ${
+                className={`delay-100 duration-300 relative w-full text-xl font-bold line-clamp-2 hover:scale-110 hover:text-white hover:px-8 px-6 mt-6 hover:before:left-0.688 hover:before:h-full hover:before:w-0.313 hover:before:text-transparent hover:before:bg-lPurple before:absolute ${
                   active === item.id
                     ? "text-white before:h-full before:w-0.313 before:left-0.688 px-8 scale-110 before:bg-lPurple before:border-lPurple before:border-r-1 before:shadow-slugActive"
                     : "text-beton"
@@ -59,6 +60,20 @@ export default function MenuComponents({ activeState, isActive }) {
           </li>
         ))}
       </ul>
+      <div
+        className={`duration-500 cursor-pointer ${
+          activeState ? "delay-1000 translate-x-0" : "translate-x-80"
+        }`}
+      >
+        <div
+          className={`w-48 flex justify-center gap-2 items-center duration-300 text-xl font-bold hover:scale-110 text-beton hover:text-white absolute top-30 ${
+            activeState ? "right-20" : "hidden"
+          }`}
+        >
+          Sign Out
+          <IconComponent className="" name="signOut" />
+        </div>
+      </div>
     </div>
   );
 }

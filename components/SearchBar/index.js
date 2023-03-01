@@ -1,6 +1,5 @@
 import { useRef } from "react";
-import IconLoading from "../IconLoading";
-import IconSearch from "../IconSearch";
+import IconComponent from "../Icon";
 
 export default function SearchBar(props) {
   const { onChange, movies } = props;
@@ -23,10 +22,13 @@ export default function SearchBar(props) {
       />
       {movies?.length > 0 ? (
         <button onClick={searchIconClick}>
-          <IconSearch className="search-svg w-6 h-6 mr-3" />
+          <IconComponent
+            className={"stroke-orange-600 w-6 h-6 mr-3"}
+            name={"search"}
+          />
         </button>
       ) : (
-        <IconLoading className="w-10 h-10 mr-1" />
+        <IconComponent className="w-10 h-10 mr-1" name={"loading"} />
       )}
     </div>
   );
