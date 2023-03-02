@@ -2,10 +2,35 @@ import { useState, useEffect, use } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import IconComponent from "../Icon";
+import authService from "../../api/platforms/services/auth.js";
 
 export default function MenuComponents({ activeState, isActive }) {
   const [active, setActive] = useState("home");
   const { pathname } = useRouter();
+  const router = useRouter();
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    setUser(JSON.parse(window.localStorage.getItem("user_data")));
+    console.log({ user });
+  }, []);
+
+  function handleSignOut() {
+    authService
+      .signOut()
+      .then(() => {
+        window.localStorage.removeItem("user_data");
+        router.push("/");
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log({ err });
+        if (err.code.includes("OOps, something went wrong...")) {
+          // this.error = "Oops, email already in use. Try again.";
+        }
+      });
+  }
 
   const data = [
     { id: "", href: "/", name: "Home", delay: "delay-1" },
@@ -65,14 +90,17 @@ export default function MenuComponents({ activeState, isActive }) {
           activeState ? "delay-1000 translate-x-0" : "translate-x-80"
         }`}
       >
-        <div
-          className={`w-48 flex justify-center gap-2 items-center duration-300 text-xl font-bold hover:scale-110 text-beton hover:text-white absolute top-30 ${
-            activeState ? "right-20" : "hidden"
-          }`}
-        >
-          Sign Out
-          <IconComponent className="" name="signOut" />
-        </div>
+        {user && (
+          <button
+            onClick={handleSignOut}
+            className={`w-48 flex justify-center gap-2 items-center duration-300 text-xl font-bold hover:scale-110 text-beton hover:text-white absolute top-30 ${
+              activeState ? "right-20" : "hidden"
+            }`}
+          >
+            Sign Out
+            <IconComponent className="" name="signOut" />
+          </button>
+        )}
       </div>
     </div>
   );

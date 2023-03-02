@@ -12,6 +12,7 @@ export default function Home() {
   {
     isActive ? console.log("active") : console.log("false");
   }
+
   return (
     <div className="mx-auto flex flex-col items-center gap-y-20 pb-40">
       <div>
