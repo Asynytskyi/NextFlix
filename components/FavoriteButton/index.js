@@ -1,6 +1,6 @@
 import { useState } from "react";
-import IconFullFavorite from "../IconFullFavorite";
-import IconEmptyFavorite from "../IconEmptyFavorite";
+import IconComponent from "../Icon";
+import cls from "classnames";
 
 export default function FavButton({ movie, addFavorite }) {
   const [active, setActive] = useState(false);
@@ -17,7 +17,13 @@ export default function FavButton({ movie, addFavorite }) {
         setAct();
       }}
     >
-      {active ? <IconFullFavorite /> : <IconEmptyFavorite />}
+      <IconComponent
+        className={cls({
+          "text-beis stroke-current fill-transparent": !active,
+          "text-beis fill-current stroke-current": active,
+        })}
+        name={"favorite"}
+      />
     </button>
   );
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import BestRated from "../components/BestRated";
 import Header from "../components/Header";
+import Logo from "../components/Logo";
 
 export default function Home() {
   const [allMovies, setAllMovies] = useState([]);
@@ -14,7 +15,11 @@ export default function Home() {
   return (
     <div className="mx-auto flex flex-col items-center gap-y-20 pb-40">
       <div>
-        <Header requireMovies={setAllMovies} isActive={isActive} />
+        <Header
+          requireMovies={setAllMovies}
+          isActive={isActive}
+          filter_num={1}
+        />
       </div>
       <div className="pt-44">
         {allMovies?.length > 0 ? (
@@ -34,9 +39,7 @@ export default function Home() {
             })}
           </main>
         ) : (
-          <div className="empty">
-            <h2>No movies found</h2>
-          </div>
+          <Logo className="h-40 w-auto" />
         )}
       </div>
     </div>

@@ -25,6 +25,7 @@ module.exports = {
       },
       spacing: {
         0.688: rem(11),
+        30: rem(480),
       },
       colors: {
         onyx: "#343739",
@@ -32,6 +33,11 @@ module.exports = {
         beton: "#a1a1a1",
         obsidian: "#1f2123",
         lPurple: "#8167a9",
+        PSea: "#1f1b2b",
+        PBg: "#191622",
+        Birus: "#1cebe5",
+        Ash: "#CAC3B8",
+        ww: "#8e7cc3",
       },
     },
   },
