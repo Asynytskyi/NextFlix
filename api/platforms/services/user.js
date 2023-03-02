@@ -1,4 +1,4 @@
-import firestoreService from "@/api/platforms/firebase/firestore.js";
+import firestoreService from "../firebase/firestore.js";
 
 export default {
   setUser(user) {

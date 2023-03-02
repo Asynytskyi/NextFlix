@@ -1,9 +1,10 @@
-import { use, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Logo from "../components/Logo";
 import IconComponent from "../components/Icon";
 import authService from "../api/platforms/services/auth";
+import userService from "../api/platforms/services/user";
 
 export default function SignIn() {
   const [isFocusEmail, setFocusEmail] = useState(false);
@@ -39,9 +40,22 @@ export default function SignIn() {
     authService
       .signInWithGoogle()
       .then((res) => {
-        console.log("User signed in with google");
-        console.log({ res });
-        router.push("/");
+        console.log("User signed up with google");
+        const userData = {
+          uid: res.user.uid,
+          name: res.user.displayName,
+          email: res.user.email,
+          photoURL: res.user.photoURL,
+        };
+        userService
+          .setUser(userData)
+          .then(() => {
+            window.localStorage.setItem("user_data", JSON.stringify(userData));
+            router.push("/profile");
+          })
+          .catch((err) => {
+            console.error({ err });
+          });
       })
       .catch((err) => {
         console.log({ err });

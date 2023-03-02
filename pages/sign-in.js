@@ -1,4 +1,4 @@
-import { use, useState, useRef } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Logo from "../components/Logo";
@@ -42,7 +42,14 @@ export default function SignIn() {
       .signInWithGoogle()
       .then((res) => {
         console.log("User signed in with google");
-        console.log({ res });
+
+        const userData = {
+          uid: res.user.uid,
+          name: res.user.displayName,
+          email: res.user.email,
+          photoURL: res.user.photoURL,
+        };
+        window.localStorage.setItem("user_data", JSON.stringify(userData));
         router.push("/");
       })
       .catch((err) => {

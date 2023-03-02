@@ -8,7 +8,7 @@ import {
   setDoc,
   doc,
 } from "firebase/firestore";
-import { db } from "@/api/platforms/firebase/init";
+import { db } from "../firebase/init";
 
 export default {
   getCollection(collectionId) {

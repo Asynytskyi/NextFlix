@@ -18,6 +18,13 @@ const Header = ({ requireMovies, isActive, filter_num }) => {
   const router = useRouter();
   const [isHover, setIsHover] = useState(false);
 
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    setUser(JSON.parse(window.localStorage.getItem("user_data")));
+    console.log({ user });
+  }, []);
+
   const API_URL = "https://www.omdbapi.com/?i=tt3896198&apikey=a8fac808";
 
   async function searchMovies(title) {
@@ -111,14 +118,16 @@ const Header = ({ requireMovies, isActive, filter_num }) => {
           <MenuComponents activeState={active} isActive={isActive} />
         </aside>
       </div>
-      <button
-        className="fixed right-10 top-6 z-40"
-        onClick={() => {
-          router.push("/sign-in");
-        }}
-      >
-        Sign In
-      </button>
+      {!user && (
+        <button
+          className="fixed right-10 top-6 z-40"
+          onClick={() => {
+            router.push("/sign-in");
+          }}
+        >
+          Sign In
+        </button>
+      )}
     </header>
   );
 };
