@@ -53,7 +53,9 @@ export default function SignIn() {
       <div className="login-left flex justify-center w-full">
         <div className="flex flex-col w-2/5 h-auto px-10 pt-6 pb-6 mt-12 mb-10 bg-PSea bg-opacity-75 border-4 border-PSea rounded-2xl">
           <Logo className="top-80 logo-sign-in mb-6 mt-2" />
-          <h1 className="text-2xl tracking-wider font-bold mb-4">Login</h1>
+          <h1 className="text-2xl tracking-wider font-bold mb-4">
+            Create account
+          </h1>
           <h2 className="text-slate-400 mb-8">Please sign in to continue.</h2>
           <div className="flex flex-col justify-center gap-6">
             <div className="relative">
