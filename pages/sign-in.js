@@ -1,9 +1,10 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Logo from "../components/Logo";
 import IconComponent from "../components/Icon";
 import authService from "../api/platforms/services/auth";
+import userService from "../api/platforms/services/user";
 
 export default function SignIn() {
   const [isFocusEmail, setFocusEmail] = useState(false);
@@ -24,15 +25,50 @@ export default function SignIn() {
       .signInWithEmailAndPassword(email, password)
       .then((res) => {
         console.log("User signed in successfully");
-        router.push("/");
+        userService
+          .getUser(res.user.uid)
+          .then((userD) => {
+            const userData = {
+              uid: userD.uid,
+              name: userD.displayName,
+              email: userD.email,
+              photoURL: userD.photoURL,
+              favorites: userD.favorites,
+            };
+            window.localStorage.setItem("user_data", JSON.stringify(userData));
+            router.push("/");
+          })
+          .catch((err) => {
+            const userData = {
+              uid: res.data.uid,
+              name: res.data.displayName,
+              email: res.data.email,
+              photoURL: res.data.photoURL,
+              favorites: [],
+            };
+            userService
+              .setUser(userData)
+              .then(() => {
+                window.localStorage.setItem(
+                  "user_data",
+                  JSON.stringify(userData)
+                );
+                router.push("/");
+              })
+              .catch((err) => {
+                console.error(err);
+              });
+          });
       })
       .catch((err) => {
         console.log({ err });
         if (err.code.includes("wrong-password")) {
           setError("Seems like the password is wrong. Try again.");
+          console.log(err);
         }
         if (err.code.includes("user-not-found")) {
           setError("Sorry, this user is not found. ");
+          console.log(err);
         }
       });
   }
@@ -42,15 +78,40 @@ export default function SignIn() {
       .signInWithGoogle()
       .then((res) => {
         console.log("User signed in with google");
-
-        const userData = {
-          uid: res.user.uid,
-          name: res.user.displayName,
-          email: res.user.email,
-          photoURL: res.user.photoURL,
-        };
-        window.localStorage.setItem("user_data", JSON.stringify(userData));
-        router.push("/");
+        userService
+          .getUser(res.user.uid)
+          .then((userD) => {
+            const userData = {
+              uid: userD.uid,
+              name: userD.displayName,
+              email: userD.email,
+              photoURL: userD.photoURL,
+              favorites: userD.favorites,
+            };
+            window.localStorage.setItem("user_data", JSON.stringify(userData));
+            router.push("/");
+          })
+          .catch((err) => {
+            const userData = {
+              uid: res.data.uid,
+              name: res.data.displayName,
+              email: res.data.email,
+              photoURL: res.data.photoURL,
+              favorites: [],
+            };
+            userService
+              .setUser(userData)
+              .then(() => {
+                window.localStorage.setItem(
+                  "user_data",
+                  JSON.stringify(userData)
+                );
+                router.push("/");
+              })
+              .catch((err) => {
+                console.error(err);
+              });
+          });
       })
       .catch((err) => {
         console.log({ err });

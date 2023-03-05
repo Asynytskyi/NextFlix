@@ -16,14 +16,12 @@ const Header = ({ requireMovies, isActive, filter_num }) => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [defaultScrollY, setDefaultScrollY] = useState(200);
   const router = useRouter();
-  const [isHover, setIsHover] = useState(false);
-
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     setUser(JSON.parse(window.localStorage.getItem("user_data")));
-    console.log({ user });
   }, []);
+  // console.log({ user });
 
   const API_URL = "https://www.omdbapi.com/?i=tt3896198&apikey=a8fac808";
 
