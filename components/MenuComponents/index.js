@@ -13,8 +13,8 @@ export default function MenuComponents({ activeState, isActive }) {
 
   useEffect(() => {
     setUser(JSON.parse(window.localStorage.getItem("user_data")));
-    console.log({ user });
   }, []);
+  // console.log({ user });
 
   function handleSignOut() {
     authService

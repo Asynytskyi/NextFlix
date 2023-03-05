@@ -27,11 +27,27 @@ export default function SignIn() {
       .signUpWithEmailAndPassword(email, password)
       .then((res) => {
         console.log("User signed up successfully");
+        const userData = {
+          uid: res.user.uid,
+          name: res.user.displayName,
+          email: res.user.email,
+          photoURL: res.user.photoURL,
+          favorites: [],
+        };
+        userService
+          .setUser(userData)
+          .then(() => {
+            window.localStorage.setItem("user_data", JSON.stringify(userData));
+            router.push("/");
+          })
+          .catch((err) => {
+            console.error({ err });
+          });
       })
       .catch((err) => {
         console.log({ err });
         if (err.code.includes("already-in-use")) {
-          // this.error = "Oops, email already in use. Try again.";
+          setError("Oops, email already in use. Try again.");
         }
       });
   }
@@ -41,20 +57,40 @@ export default function SignIn() {
       .signInWithGoogle()
       .then((res) => {
         console.log("User signed up with google");
-        const userData = {
-          uid: res.user.uid,
-          name: res.user.displayName,
-          email: res.user.email,
-          photoURL: res.user.photoURL,
-        };
+        console.log({ res });
         userService
-          .setUser(userData)
-          .then(() => {
+          .getUser(res.user.uid)
+          .then((userD) => {
+            const userData = {
+              uid: userD.uid,
+              name: userD.displayName,
+              email: userD.email,
+              photoURL: userD.photoURL,
+              favorites: userD.favorites,
+            };
             window.localStorage.setItem("user_data", JSON.stringify(userData));
-            router.push("/profile");
+            router.push("/");
           })
           .catch((err) => {
-            console.error({ err });
+            const userData = {
+              uid: res.data.uid,
+              name: res.data.displayName,
+              email: res.data.email,
+              photoURL: res.data.photoURL,
+              favorites: [],
+            };
+            userService
+              .setUser(userData)
+              .then(() => {
+                window.localStorage.setItem(
+                  "user_data",
+                  JSON.stringify(userData)
+                );
+                router.push("/");
+              })
+              .catch((err) => {
+                console.error(err);
+              });
           });
       })
       .catch((err) => {
@@ -197,7 +233,7 @@ export default function SignIn() {
             <div className="flex flex-col items-center gap-4 mb-2 mt-12 ">
               <button
                 onClick={() => {
-                  handleSignUp;
+                  handleSignUp(email, password1);
                 }}
                 className={`text-lg delay-100 duration-300 w-72 h-12 rounded-full tracking-wide font-bold py-2 ${
                   password2.length >= 6 && emailIsValid() === true

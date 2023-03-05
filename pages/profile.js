@@ -3,7 +3,9 @@ export default function Profile() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
+    console.log(window.localStorage);
     setUser(JSON.parse(window.localStorage.getItem("user_data")));
   }, []);
-  return <h1>{user ? user.name : "No user found"}</h1>;
+  console.log(user);
+  return <h1>{user ? `${user.name}, ${user.email}` : "No user found"}</h1>;
 }

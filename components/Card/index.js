@@ -1,24 +1,20 @@
 import cls from "classnames";
-
-import { use, useState } from "react";
+import { use, useState, useEffect } from "react";
 import FavButton from "../FavoriteButton";
 
 export default function Card(props) {
-  const { imgURL, title, year, type, movieId, movieGenre } = props;
-
-  const [favorite, setFavorite] = useState([]);
-  const addFavorite = (movies) => {
-    setFavorite((favorite) => [...favorite, movies]);
-  };
-
-  console.log(favorite);
+  const { imgURL, title, year, type, movieId, movieGenre, addFavorite } = props;
 
   const [isHover, setIsHover] = useState(false);
   const [id, setId] = useState(null);
-
   const [movie, setMovie] = useState({});
   const [genre, setGenre] = useState(null);
   const API_URL = `https://www.omdbapi.com/?i=${id}&apikey=a8fac808`;
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    setUser(JSON.parse(window.localStorage.getItem("user_data")));
+  }, []);
 
   async function search() {
     setGenre(movieGenre);
@@ -108,13 +104,13 @@ export default function Card(props) {
           "absolute top-4 right-4": isHover,
         })}
       >
-        {/* {movie.map((movies) => ( */}
-        <FavButton
-          key={movie.movieId}
-          movies={movie}
-          addFavorite={() => addFavorite(movie)}
-        />
-        {/* ))}; */}
+        {user && (
+          <FavButton
+            key={movie.imdbID}
+            movie={movie.imdbID}
+            addFavorite={(id) => addFavorite(id)}
+          />
+        )}
       </div>
     </figure>
   );
