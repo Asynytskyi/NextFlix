@@ -80,20 +80,20 @@ const Header = ({ requireMovies, isActive, filter_num }) => {
   return (
     <header>
       <div
-        className={`border-b-2 border-[var(--bg)] backdrop-blur-xl fixed top-0 right-0 left-0 z-20 w-full h-20 flex flex-row items-center justify-between px-10 transition-opacity ${
+        className={`border-b-2 border-[var(--bg)] backdrop-blur-xl fixed top-0 right-0 left-0 z-20 w-full h-20 flex flex-row items-center justify-between px-2 md:px-10 transition-opacity ${
           show ? "opacity-100 duration-500" : "opacity-0 -z-10"
         }`}
       >
         <div>
           {show ? (
             <Link href={"/"}>
-              <Logo className="logo-main" />
+              <Logo className="hidden md:block logo-main" />
             </Link>
           ) : (
             <></>
           )}
         </div>
-        <div className={`w-2/3 opacity-60 ${show ? "" : "hidden"}`}>
+        <div className={`w-full md:w-2/3 opacity-60 ${show ? "" : "hidden"}`}>
           <SearchBar
             movies={movies}
             onChange={(name) => {
