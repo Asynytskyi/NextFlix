@@ -56,9 +56,23 @@ a {
   -webkit-background-clip: text;
   transform: translateX(-0.03em);
 }
-.logo-main {
-  font-size: 28px;
-  font-weight: 700;
+@media (max-width: 640px) {
+  .logo-main {
+    font-size: 16px;
+    font-weight: 600;
+  }
+}
+@media (min-width: 640px) {
+  .logo-main {
+    font-size: 18px;
+    font-weight: 600;
+  }
+}
+@media (min-width: 768px) {
+  .logo-main {
+    font-size: 28px;
+    font-weight: 700;
+  }
 }
 .logo-loading {
   font-size: 60px;
