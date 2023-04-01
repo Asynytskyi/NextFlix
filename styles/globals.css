@@ -78,6 +78,10 @@ a {
   font-size: 60px;
   font-weight: 700;
 }
+.logo-xs {
+  font-size: 30px;
+  font-weight: 600;
+}
 .logo-sign-in {
   font-size: 36px;
   font-weight: 700;
@@ -119,7 +123,7 @@ button:hover svg rect {
   color: #a1a1a1;
   opacity: 1;
 }
-.login-left {
+.login-bg {
   background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat.svg"),
     linear-gradient(#222426, #1f2123);
   background-repeat: no-repeat;

@@ -100,14 +100,16 @@ export default function SignIn() {
 
   return (
     <div className="flex h-screen">
-      <div className="login-left flex justify-center w-full">
-        <div className="flex flex-col w-2/5 h-auto px-10 pt-6 pb-6 mt-12 mb-10 bg-PSea bg-opacity-75 border-4 border-PSea rounded-2xl">
-          <Logo className="top-80 logo-sign-in mb-6 mt-2" />
+      <div className="login-bg flex justify-center w-full">
+        <div className="flex flex-col w-5/6 md:w-2/5 h-auto px-10 pt-6 pb-6 mt-12 mb-10 bg-PSea bg-opacity-75 border-4 border-PSea rounded-2xl">
+          <Logo className="top-80 logo-xs md:logo-sign-in mb-6 mt-2" />
           <h1 className="text-2xl tracking-wider font-bold mb-4">
             Create account
           </h1>
-          <h2 className="text-slate-400 mb-8">Please sign in to continue.</h2>
-          <div className="flex flex-col justify-center gap-6">
+          <h2 className="text-slate-400 mb-8">
+            Sign up for better experience.
+          </h2>
+          <div className="flex flex-col justify-center gap-4">
             <div className="relative">
               <input
                 id="email"
@@ -137,14 +139,14 @@ export default function SignIn() {
                 onClick={() => {
                   envelope.current.focus();
                 }}
-                className={`absolute duration-500 delay-100 ${
+                className={`absolute duration-500 delay-100 xs:-mr-26 sm:-mr-6 md:-mr-4 ${
                   email.length > 0
                     ? emailIsValid() === true
-                      ? "right-4 top-4 fill-green-300 "
-                      : "right-4 top-4 fill-red-300"
+                      ? "sm:right-8 xs:right-1/2 top-4 fill-green-300 "
+                      : "sm:right-8 xs:right-1/2 top-4 fill-red-300"
                     : isFocusEmail
-                    ? "right-4 top-4 fill-gray-300"
-                    : "right-56 w-10 h-8 top-3"
+                    ? "sm:right-8 xs:right-1/2 top-4 fill-gray-300"
+                    : "right-1/2 w-10 h-8 top-3"
                 }`}
                 name="envelope"
               />
@@ -177,14 +179,14 @@ export default function SignIn() {
                 onClick={() => {
                   lock.current.focus();
                 }}
-                className={`absolute duration-500 delay-100 ${
+                className={`absolute duration-500 delay-100 xs:-mr-25 sm:-mr-6 md:-mr-4 ${
                   password1.length > 0
                     ? password1.length >= 6
-                      ? "right-4 top-4 fill-green-300"
-                      : "right-4 top-4 fill-red-300"
+                      ? "sm:right-8 xs:right-1/2 top-4 fill-green-300"
+                      : "sm:right-8 xs:right-1/2 top-4 fill-red-300"
                     : isFocusPass1
-                    ? "right-4 top-4 fill-gray-300"
-                    : "right-56 w-10 h-8 top-3"
+                    ? "sm:right-8 xs:right-1/2 top-4 fill-gray-300"
+                    : "right-1/2 w-10 h-8 top-3"
                 }`}
                 name="lock"
               />
@@ -216,21 +218,21 @@ export default function SignIn() {
                 onClick={() => {
                   lock.current.focus();
                 }}
-                className={`absolute duration-500 delay-100 ${
+                className={`absolute duration-500 delay-100 xs:-mr-25 sm:-mr-6 md:-mr-4 ${
                   password2.length > 0
                     ? password2.length >= 6 && password2 === password1
-                      ? "right-4 top-4 fill-green-300"
-                      : "right-4 top-4 fill-red-300"
+                      ? "sm:right-8 xs:right-1/2 top-4 fill-green-300"
+                      : "sm:right-8 xs:right-1/2 top-4 fill-red-300"
                     : isFocusPass2
-                    ? "right-4 top-4 fill-gray-300"
-                    : "right-56 w-10 h-8 top-3"
+                    ? "sm:right-8 xs:right-1/2 top-4 fill-gray-300"
+                    : "right-1/2 w-10 h-8 top-3"
                 }`}
                 name="lock"
               />
             </div>
           </div>
           <div className="relative h-full">
-            <div className="flex flex-col items-center gap-4 mb-2 mt-12 ">
+            <div className="flex flex-col items-center xs:gap-1 sm:gap-4 mt-6 sm:mb-2 sm:mt-12 ">
               <button
                 onClick={() => {
                   handleSignUp(email, password1);
@@ -251,11 +253,13 @@ export default function SignIn() {
                 <IconComponent name="google" />
               </button>
             </div>
-            <div className="absolute left-0 bottom-0 flex gap-1">
-              <h3 className="text-slate-400">Already have an account?</h3>{" "}
+            <div className="absolute left-1/2 -ml-6 xsm:ml-0 xsm:left-0 bottom-0 flex gap-1">
+              <h3 className="text-slate-400 hidden xsm:block">
+                Already have an account?
+              </h3>{" "}
               <Link
                 href={"/sign-in"}
-                className="text-Birus font-bold underline"
+                className="text-Birus font-bold underline -mb-4"
               >
                 Sign In
               </Link>
