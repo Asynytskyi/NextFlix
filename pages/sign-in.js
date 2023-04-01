@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Logo from "../components/Logo";
@@ -120,9 +120,9 @@ export default function SignIn() {
 
   return (
     <div className="flex h-screen">
-      <div className="login-bg flex justify-center w-full">
-        <div className="flex flex-col w-5/6 md:w-2/5 h-5/6 px-10 pt-6 pb-6 mt-16 bg-PSea bg-opacity-75 border-4 border-PSea rounded-2xl">
-          <Logo className="top-80 logo-xs md:logo-sign-in mb-6 mt-2 " />
+      <div className="login-left flex justify-center w-full">
+        <div className="flex flex-col w-2/5 h-5/6 px-10 pt-6 pb-6 mt-16 bg-PSea bg-opacity-75 border-4 border-PSea rounded-2xl">
+          <Logo className="top-80 logo-sign-in mb-6 mt-2" />
           <h1 className="text-2xl tracking-wider font-bold mb-4">Login</h1>
           <h2 className="text-slate-400 mb-8">Please sign in to continue.</h2>
           <div className="flex flex-col justify-center gap-6">
@@ -155,14 +155,14 @@ export default function SignIn() {
                 onClick={() => {
                   envelope.current.focus();
                 }}
-                className={`absolute duration-500 delay-100 xs:-mr-25 sm:-mr-6 md:-mr-4 ${
+                className={`absolute duration-500 delay-100 ${
                   email.length > 0
                     ? emailIsValid() === true
-                      ? "sm:right-8 xs:right-1/2 top-4 fill-green-300 "
-                      : "sm:right-8 xs:right-1/2 top-4 fill-red-300"
+                      ? "right-4 top-4 fill-green-300 "
+                      : "right-4 top-4 fill-red-300"
                     : isFocusEmail
-                    ? "sm:right-8 xs:right-1/2 top-4 fill-gray-300"
-                    : "right-1/2 w-10 h-8 top-3"
+                    ? "right-4 top-4 fill-gray-300"
+                    : "right-56 w-10 h-8 top-3"
                 }`}
                 name="envelope"
               />
@@ -195,21 +195,21 @@ export default function SignIn() {
                 onClick={() => {
                   lock.current.focus();
                 }}
-                className={`absolute duration-500 delay-100 xs:-mr-25 sm:-mr-6 md:-mr-4 ${
+                className={`absolute duration-500 delay-100 ${
                   password.length > 0
                     ? password.length >= 6
-                      ? "sm:right-8 xs:right-1/2 top-4 fill-green-300"
-                      : "sm:right-8 xs:right-1/2 top-4 fill-red-300"
+                      ? "right-4 top-4 fill-green-300"
+                      : "right-4 top-4 fill-red-300"
                     : isFocusPass
-                    ? "sm:right-8 xs:right-1/2 top-4 fill-gray-300"
-                    : "right-1/2 w-10 h-8 top-3"
+                    ? "right-4 top-4 fill-gray-300"
+                    : "right-56 w-10 h-8 top-3"
                 }`}
                 name="lock"
               />
             </div>
           </div>
           <div className="relative h-full">
-            <div className="flex flex-col items-center gap-4 mb-10 mt-10 md:mb-2 md:mt-12 ">
+            <div className="flex flex-col items-center gap-4 mb-2 mt-12 ">
               <button
                 onClick={() => {
                   handleSignIn(email, password);
@@ -230,10 +230,8 @@ export default function SignIn() {
                 <IconComponent name="google" />
               </button>
             </div>
-            <div className="absolute left-20 xsm:left-0 bottom-0 flex gap-1">
-              <h3 className="text-slate-400 hidden xsm:block">
-                Don't have an account?
-              </h3>{" "}
+            <div className="absolute left-0 bottom-0 flex gap-1">
+              <h3 className="text-slate-400">Don't have an account?</h3>{" "}
               <Link
                 href={"/sign-up"}
                 className="text-Birus font-bold underline"

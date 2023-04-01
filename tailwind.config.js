@@ -7,13 +7,6 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    screens: {
-      xs: "360px",
-      xsm: "410px",
-      sm: "767px",
-      md: "768px",
-      lg: "1024px",
-    },
     extend: {
       boxShadow: {
         dim: "5px 5px 7px #1c1d1f, -5px -5px 7px #222527",
@@ -29,12 +22,10 @@ module.exports = {
       },
       margin: {
         0.95: rem(15.2),
-        26: rem(108),
       },
       spacing: {
         0.688: rem(11),
         30: rem(480),
-        25: rem(102),
       },
       colors: {
         onyx: "#343739",
