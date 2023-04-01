@@ -5,7 +5,6 @@ import Logo from "../Logo";
 import Menu from "../IconMenu";
 import MenuComponents from "../MenuComponents";
 import SearchBar from "../SearchBar";
-import IconComponent from "../Icon";
 import Link from "next/link";
 
 const Header = ({ requireMovies, isActive, filter_num }) => {
@@ -93,7 +92,11 @@ const Header = ({ requireMovies, isActive, filter_num }) => {
             <></>
           )}
         </div>
-        <div className={`w-full md:w-2/3 opacity-60 ${show ? "" : "hidden"}`}>
+        <div
+          className={`border rounded-full border-gray-600 w-full md:w-2/3 opacity-60 ${
+            show ? "" : "hidden"
+          }`}
+        >
           <SearchBar
             movies={movies}
             onChange={(name) => {
@@ -105,27 +108,29 @@ const Header = ({ requireMovies, isActive, filter_num }) => {
             }}
           />
         </div>
-        <button onClick={() => setActive(!active)}>
-          {show ? (
-            <Menu className={`${active ? "btnActive" : "btnDis"}`} />
-          ) : (
-            <></>
-          )}
-        </button>
-        <aside>
-          <MenuComponents activeState={active} isActive={isActive} />
-        </aside>
+        <div className="flex lg:gap-20 gap-0">
+          <button className="mx-2 md:mx-0" onClick={() => setActive(!active)}>
+            {show ? (
+              <Menu className={`${active ? "btnActive" : "btnDis"}`} />
+            ) : (
+              <></>
+            )}
+          </button>
+          <aside>
+            <MenuComponents activeState={active} isActive={isActive} />
+          </aside>
+        </div>
+        {!user && (
+          <button
+            className="fixed right-10 top-6 z-40 hidden lg:block"
+            onClick={() => {
+              router.push("/sign-in");
+            }}
+          >
+            Sign In
+          </button>
+        )}
       </div>
-      {!user && (
-        <button
-          className="fixed right-10 top-6 z-40"
-          onClick={() => {
-            router.push("/sign-in");
-          }}
-        >
-          Sign In
-        </button>
-      )}
     </header>
   );
 };
