@@ -5,6 +5,7 @@ import Logo from "../Logo";
 import Menu from "../IconMenu";
 import MenuComponents from "../MenuComponents";
 import SearchBar from "../SearchBar";
+import IconComponent from "../Icon";
 import Link from "next/link";
 
 const Header = ({ requireMovies, isActive, filter_num }) => {
