@@ -22,7 +22,9 @@ export default function MenuComponents({ activeState, isActive }) {
       .then(() => {
         window.localStorage.removeItem("user_data");
         router.push("/");
-        window.location.reload();
+        setTimeout(() => {
+          window.location.reload();
+        }, 200);
       })
       .catch((err) => {
         console.log({ err });
@@ -33,15 +35,28 @@ export default function MenuComponents({ activeState, isActive }) {
   }
 
   const data = [
-    { id: "", href: "/", name: "Home", delay: "delay-1" },
+    { id: "", href: "/", name: "Home", delay: "delay-1", display: "block" },
     {
       id: "bestRated",
       href: "/bestRated",
       name: "Best Rated",
-
       delay: "delay-2",
+      display: "block",
     },
-    { id: "etc", href: "", name: "etc.", delay: "delay-3" },
+    {
+      id: "favorites",
+      href: "/favorites",
+      name: "Favorites",
+      delay: "delay-3",
+      display: `${user ? "block" : "hidden"}`,
+    },
+    {
+      id: "etc",
+      href: "",
+      name: "etc.",
+      delay: `${user ? "delay-4" : "delay-3"}`,
+      display: "block",
+    },
   ];
 
   useEffect(() => {
@@ -50,16 +65,16 @@ export default function MenuComponents({ activeState, isActive }) {
   return (
     <div
       className={`
-    menu-bg-image-bef align-center border-l-2 border-[var(--bg)] fixed -right-20 top-20 duration-1000 ${
+    menu-bg-image-bef h-screen align-center border-l-2 border-[var(--bg)] fixed -right-20 top-20 duration-1000 ${
       activeState
-        ? "h-screen w-72 menu-bg-image-aft text-white"
-        : "w-0 h-0 rounded-bl-full"
+        ? " w-72 menu-bg-image-aft text-white"
+        : "h-0 w-0 rounded-bl-full"
     }`}
     >
-      <ul className="pt-0.125">
+      <ul className="pt-0.125 h-full">
         {data.map((item, i) => (
           <li
-            className={`duration-700 cursor-pointer ${
+            className={`duration-700 cursor-pointer ${item.display} ${
               activeState
                 ? `${item.delay} visible translate-x-0`
                 : "translate-x-28 invisible"
@@ -93,12 +108,22 @@ export default function MenuComponents({ activeState, isActive }) {
         {user && (
           <button
             onClick={handleSignOut}
-            className={`w-48 flex justify-center gap-2 items-center duration-300 text-xl font-bold hover:scale-110 text-beton hover:text-white absolute top-30 ${
+            className={`w-48 flex justify-center gap-2 items-center duration-300 text-xl font-bold hover:scale-110 text-beton hover:text-white absolute bottom-24 ${
               activeState ? "right-20" : "hidden"
             }`}
           >
             Sign Out
-            <IconComponent className="" name="signOut" />
+            <IconComponent name="signOut" />
+          </button>
+        )}
+        {!user && (
+          <button
+            onClick={handleSignOut}
+            className={`lg:hidden w-48 flex justify-center gap-2 items-center duration-300 text-xl font-bold hover:scale-110 text-beton hover:text-white absolute bottom-24 ${
+              activeState ? "right-20" : "hidden"
+            }`}
+          >
+            Sign In
           </button>
         )}
       </div>

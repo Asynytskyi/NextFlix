@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-
 import { useRouter } from "next/router";
 import Logo from "../Logo";
 import Menu from "../IconMenu";
@@ -7,7 +6,7 @@ import MenuComponents from "../MenuComponents";
 import SearchBar from "../SearchBar";
 import Link from "next/link";
 
-const Header = ({ requireMovies, isActive, filter_num }) => {
+const Header = ({ requireMovies, requireBestMovies, isActive, filter_num }) => {
   const [movies, setMovies] = useState([]);
   const [active, setActive] = useState(false);
   const filter = ["Batman", "Lego", ""];
@@ -20,7 +19,6 @@ const Header = ({ requireMovies, isActive, filter_num }) => {
   useEffect(() => {
     setUser(JSON.parse(window.localStorage.getItem("user_data")));
   }, []);
-  // console.log({ user });
 
   const API_URL = "https://www.omdbapi.com/?i=tt3896198&apikey=a8fac808";
 
@@ -34,13 +32,12 @@ const Header = ({ requireMovies, isActive, filter_num }) => {
     }
   }
 
-  // Default onfirstload search
-  /* useEffect(() => {
-    if (isActive) searchMovies(filter[1]);
-    else {
-      searchMovies(filter[0]);
-    }
-  }, []); */
+  const getMovieRating = async (id) => {
+    const API_URL = `https://www.omdbapi.com/?i=${id}&apikey=a8fac808`;
+    const response = await fetch(`${API_URL}`);
+    const movie = await response.json();
+    return movie.imdbRating;
+  };
 
   useEffect(() => {
     searchMovies(filter[filter_num]);
@@ -48,6 +45,28 @@ const Header = ({ requireMovies, isActive, filter_num }) => {
 
   useEffect(() => {
     requireMovies(movies);
+  }, [movies]);
+
+  useEffect(() => {
+    requireBestMovies(movies);
+  }, [movies]);
+
+  useEffect(() => {
+    let newMovies = [];
+    (async () => {
+      for (const movie of movies) {
+        newMovies.push({
+          ...movie,
+          rating: await getMovieRating(movie.imdbID),
+        });
+      }
+    })()
+      .then((res) => {
+        newMovies.sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating));
+        newMovies = newMovies.filter((movie) => parseFloat(movie.rating) > 8.0);
+        requireBestMovies(newMovies);
+      })
+      .catch((err) => console.error(err));
   }, [movies]);
 
   const controlHeader = () => {
@@ -108,28 +127,29 @@ const Header = ({ requireMovies, isActive, filter_num }) => {
             }}
           />
         </div>
-        <div className="flex lg:gap-20 gap-0">
-          <button className="mx-2 md:mx-0" onClick={() => setActive(!active)}>
+        <div className="flex justify-around lg:gap-4">
+          <button className="mx-2" onClick={() => setActive(!active)}>
             {show ? (
               <Menu className={`${active ? "btnActive" : "btnDis"}`} />
             ) : (
               <></>
             )}
           </button>
-          <aside>
-            <MenuComponents activeState={active} isActive={isActive} />
-          </aside>
+          {!user && (
+            <button
+              // className="fixed right-10 top-6 z-40 hidden lg:block"
+              className="hidden lg:block"
+              onClick={() => {
+                router.push("/sign-in");
+              }}
+            >
+              Sign In
+            </button>
+          )}
         </div>
-        {!user && (
-          <button
-            className="fixed right-10 top-6 z-40 hidden lg:block"
-            onClick={() => {
-              router.push("/sign-in");
-            }}
-          >
-            Sign In
-          </button>
-        )}
+        <aside>
+          <MenuComponents activeState={active} isActive={isActive} />
+        </aside>
       </div>
     </header>
   );

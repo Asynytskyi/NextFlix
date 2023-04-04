@@ -3,9 +3,9 @@ import IconComponent from "../Icon";
 import cls from "classnames";
 
 export default function FavButton({ movie, addFavorite }) {
-  function isFavorite(movieId) {
+  function isFavorite(movie) {
     const user = window && JSON.parse(window.localStorage.getItem("user_data"));
-    return user && user.favorites.includes(movieId);
+    return user && user.favorites.includes(JSON.stringify(movie));
   }
 
   return (

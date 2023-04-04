@@ -4,13 +4,13 @@ import FavButton from "../FavoriteButton";
 
 export default function Card(props) {
   const { imgURL, title, year, type, movieId, movieGenre, addFavorite } = props;
-
+  const [favorite, setFavorite] = useState([]);
   const [isHover, setIsHover] = useState(false);
   const [id, setId] = useState(null);
   const [movie, setMovie] = useState({});
   const [genre, setGenre] = useState(null);
-  const API_URL = `https://www.omdbapi.com/?i=${id}&apikey=a8fac808`;
   const [user, setUser] = useState(null);
+  const API_URL = `https://www.omdbapi.com/?i=${id}&apikey=a8fac808`;
 
   useEffect(() => {
     setUser(JSON.parse(window.localStorage.getItem("user_data")));
@@ -104,11 +104,11 @@ export default function Card(props) {
           "absolute top-4 right-4": isHover,
         })}
       >
-        {user && (
+        {user && movie.imdbRating && (
           <FavButton
-            key={movie.imdbID}
-            movie={movie.imdbID}
-            addFavorite={(id) => addFavorite(id)}
+            key={movie.movieId}
+            movie={movie}
+            addFavorite={(movie) => addFavorite(movie)}
           />
         )}
       </div>

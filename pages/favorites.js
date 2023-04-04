@@ -7,6 +7,7 @@ import userService from "../api/platforms/services/user.js";
 export default function Home() {
   const [allMovies, setAllMovies] = useState([]);
   const [allBestMovies, setAllBestMovies] = useState([]);
+  const [allFavorites, setAllFavorites] = useState([]);
   const [active, setActive] = useState(true);
   const [favorite, setFavorite] = useState([]);
   const [user, setUser] = useState(null);
@@ -18,6 +19,10 @@ export default function Home() {
   useEffect(() => {
     setUser(JSON.parse(window.localStorage.getItem("user_data")));
   }, []);
+
+  useEffect(() => {
+    if (user) setAllFavorites(user.favorites.map((f) => JSON.parse(f)));
+  }, [user]);
 
   const addFavorite = (movie) => {
     console.log(movie);
@@ -58,9 +63,9 @@ export default function Home() {
       </div>
 
       <div className="pt-44">
-        {allMovies?.length > 0 ? (
+        {allFavorites?.length > 0 ? (
           <main className="container flex flex-wrap justify-center gap-x-12 gap-y-14">
-            {allMovies.map((movie, index) => {
+            {allFavorites.map((movie, index) => {
               return (
                 <Card
                   addFavorite={(movie) => addFavorite(movie)}
@@ -69,7 +74,7 @@ export default function Home() {
                   title={movie.Title}
                   year={movie.Year}
                   imgURL={movie.Poster}
-                  type={movie.Type}
+                  type={""}
                   movieId={movie.imdbID}
                   movieGenre={movie.Genre}
                   key={index}
