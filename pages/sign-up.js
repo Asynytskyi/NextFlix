@@ -16,7 +16,8 @@ export default function SignIn() {
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
   const envelope = useRef(null);
-  const lock = useRef(null);
+  const lock1 = useRef(null);
+  const lock2 = useRef(null);
 
   function emailIsValid() {
     return email && /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
@@ -139,7 +140,7 @@ export default function SignIn() {
                 onClick={() => {
                   envelope.current.focus();
                 }}
-                className={`w-full placeholder-gray-500 rounded-2xl bg-opacity-50 pl-4 h-14 duration-500 ${
+                className={`absolute duration-500 delay-100 xs:-mr-25 sm:-mr-6 md:-mr-4 ${
                   email.length > 0
                     ? emailIsValid() === true
                       ? "sm:right-8 xs:right-1/2 top-4 fill-green-300 "
@@ -156,7 +157,7 @@ export default function SignIn() {
               <input
                 id="password1"
                 type="password"
-                ref={lock}
+                ref={lock1}
                 value={password1}
                 onChange={(e) => {
                   setPassword1(e.target.value);
@@ -177,7 +178,7 @@ export default function SignIn() {
               />
               <IconComponent
                 onClick={() => {
-                  lock.current.focus();
+                  lock1.current.focus();
                 }}
                 className={`absolute duration-500 delay-100 xs:-mr-25 sm:-mr-6 md:-mr-4 ${
                   password1.length > 0
@@ -195,7 +196,7 @@ export default function SignIn() {
               <input
                 id="password2"
                 type="password"
-                ref={lock}
+                ref={lock2}
                 value={password2}
                 onChange={(e) => {
                   setPassword2(e.target.value);
@@ -216,7 +217,7 @@ export default function SignIn() {
               />
               <IconComponent
                 onClick={() => {
-                  lock.current.focus();
+                  lock2.current.focus();
                 }}
                 className={`absolute duration-500 delay-100 xs:-mr-25 sm:-mr-6 md:-mr-4 ${
                   password2.length > 0
