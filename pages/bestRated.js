@@ -76,7 +76,7 @@ export default function Home() {
             })}
           </main>
         ) : (
-          <Logo className="h-40 w-auto" />
+          <Logo className="logo-loading-sm sm:logo-loading" />
         )}
       </div>
     </div>

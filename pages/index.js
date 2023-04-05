@@ -78,7 +78,7 @@ export default function Home() {
             })}
           </main>
         ) : (
-          <Logo className="logo-loading" />
+          <Logo className="logo-loading-sm sm:logo-loading" />
         )}
       </div>
     </div>
