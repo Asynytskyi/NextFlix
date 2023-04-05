@@ -71,61 +71,65 @@ export default function MenuComponents({ activeState, isActive }) {
         : "h-0 w-0 rounded-bl-full"
     }`}
     >
-      <ul className="pt-0.125 h-full">
-        {data.map((item, i) => (
-          <li
-            className={`duration-700 cursor-pointer ${item.display} ${
-              activeState
-                ? `${item.delay} visible translate-x-0`
-                : "translate-x-28 invisible"
-            }`}
-            key={i}
-          >
-            <Link href={item.href} legacyBehavior>
-              <a
-                onClick={() => {
-                  isActive();
-                  setActive(item.id);
-                }}
-                href={item.link}
-                className={`delay-100 duration-300 relative w-full text-xl font-bold line-clamp-2 hover:scale-110 hover:text-white hover:px-8 px-6 mt-6 hover:before:left-0.688 hover:before:h-full hover:before:w-0.313 hover:before:text-transparent hover:before:bg-lPurple before:absolute ${
-                  active === item.id
-                    ? "text-white before:h-full before:w-0.313 before:left-0.688 px-8 scale-110 before:bg-lPurple before:border-lPurple before:border-r-1 before:shadow-slugActive"
-                    : "text-beton"
-                }`}
-              >
-                {item.name}
-              </a>
-            </Link>
-          </li>
-        ))}
-      </ul>
-      <div
-        className={`duration-500 cursor-pointer ${
-          activeState ? "delay-1000 translate-x-0" : "translate-x-80"
-        }`}
-      >
-        {user && (
-          <button
-            onClick={handleSignOut}
-            className={`w-48 flex justify-center gap-2 items-center duration-300 text-xl font-bold hover:scale-110 text-beton hover:text-white absolute bottom-24 ${
-              activeState ? "right-20" : "hidden"
-            }`}
-          >
-            Sign Out
-            <IconComponent name="signOut" />
-          </button>
-        )}
-        {!user && (
-          <button
-            onClick={handleSignOut}
-            className={`lg:hidden w-48 flex justify-center gap-2 items-center duration-300 text-xl font-bold hover:scale-110 text-beton hover:text-white absolute bottom-24 ${
-              activeState ? "right-20" : "hidden"
-            }`}
-          >
-            Sign In
-          </button>
-        )}
+      <div className="h-screen flex flex-col justify-between">
+        <ul className="pt-0.125 h-full">
+          {data.map((item, i) => (
+            <li
+              className={`duration-700 cursor-pointer ${item.display} ${
+                activeState
+                  ? `${item.delay} visible translate-x-0`
+                  : "translate-x-28 invisible"
+              }`}
+              key={i}
+            >
+              <Link href={item.href} legacyBehavior>
+                <a
+                  onClick={() => {
+                    isActive();
+                    setActive(item.id);
+                  }}
+                  href={item.link}
+                  className={`delay-100 duration-300 relative w-full text-xl font-bold line-clamp-2 hover:scale-110 hover:text-white hover:px-8 px-6 mt-6 hover:before:left-0.688 hover:before:h-full hover:before:w-0.313 hover:before:text-transparent hover:before:bg-lPurple before:absolute ${
+                    active === item.id
+                      ? "text-white before:h-full before:w-0.313 before:left-0.688 px-8 scale-110 before:bg-lPurple before:border-lPurple before:border-r-1 before:shadow-slugActive"
+                      : "text-beton"
+                  }`}
+                >
+                  {item.name}
+                </a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <div
+          className={`duration-500 cursor-pointer ${
+            activeState ? "delay-1000 translate-x-0" : "translate-x-80"
+          }`}
+        >
+          {user && (
+            <button
+              onClick={handleSignOut}
+              className={`mb-28 w-48 flex justify-center gap-2 items-center duration-300 text-xl font-bold hover:scale-110 text-beton hover:text-white ${
+                activeState ? "right-20" : "hidden"
+              }`}
+            >
+              Sign Out
+              <IconComponent name="signOut" />
+            </button>
+          )}
+          {!user && (
+            <button
+              onClick={() => {
+                router.push("/sign-in");
+              }}
+              className={`lg:hidden w-48 flex justify-center gap-2 items-center duration-300 text-xl font-bold hover:scale-110 text-beton hover:text-white absolute bottom-24 ${
+                activeState ? "right-20" : "hidden"
+              }`}
+            >
+              Sign In
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

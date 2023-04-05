@@ -133,7 +133,7 @@ export default function SignIn() {
                     ? "bg-PBg"
                     : "bg-gray-700"
                 }`}
-                placeholder={isFocusEmail ? "" : "Insert Email"}
+                placeholder={isFocusEmail ? "" : "Email"}
               />
               <IconComponent
                 onClick={() => {
@@ -173,7 +173,7 @@ export default function SignIn() {
                     ? "bg-PBg"
                     : "bg-gray-700"
                 }`}
-                placeholder={isFocusPass1 ? "" : "Insert Password"}
+                placeholder={isFocusPass1 ? "" : "Password"}
               />
               <IconComponent
                 onClick={() => {
@@ -212,7 +212,7 @@ export default function SignIn() {
                     ? "bg-PBg"
                     : "bg-gray-700"
                 }`}
-                placeholder={isFocusPass2 ? "" : "Insert Password"}
+                placeholder={isFocusPass2 ? "" : "Password"}
               />
               <IconComponent
                 onClick={() => {
